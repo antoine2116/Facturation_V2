@@ -65,13 +65,13 @@ else
                         @facture.MontantRegle.ToString("F2")
                     </td>
                     <td style="text-align: right">
-                        @facture.ResteARecevoir.ToString("F2")
+                        @((facture.MontantDu - facture.MontantRegle).ToString("F2"))
                     </td>
                 </tr>
 
                 totalDu += facture.MontantDu;
                 totalRegle += facture.MontantRegle;
-                totalReste += facture.ResteARecevoir;
+                totalReste += facture.MontantDu - facture.MontantRegle;
 
             }
         </tbody>

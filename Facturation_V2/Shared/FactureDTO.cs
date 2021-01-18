@@ -10,14 +10,20 @@ namespace Facturation_V2.Shared
     public class FactureDTO
     {
         [Required(ErrorMessage = "Le client est obligatoire")]
+        [StringLength(50, ErrorMessage = "Le numéro est trop long (10 char. max)")]
         public string Client { get; set; }
+
         [Required(ErrorMessage = "Le numéro est obligatoire")]
-        [StringLength(10, ErrorMessage = "Le numéro est trop long (10 char. max)")]
+        [StringLength(15, ErrorMessage = "Le numéro est trop long (10 char. max)")]
         public string Numero { get; set; }
+
+        [Required(ErrorMessage = "La date d'émission est obligatoire")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd/MM/yyyy}")]
-        public DateTime? DateEmission { get; set; } = DateTime.Now;
+        public DateTime DateEmission { get; set; } = DateTime.Now;
+
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd/MM/yyyy}")]
         public DateTime? DateReglement { get; set; }
+
         [Required(ErrorMessage = "Le montant dû est obligatoire")]
         [Range(0, Double.PositiveInfinity, ErrorMessage = "Le Montant dû doit être supérieur à 0")]
         public decimal MontantDu { get; set; }

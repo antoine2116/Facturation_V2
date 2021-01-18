@@ -30,16 +30,7 @@ namespace Facturation_V2.Server.Controllers
         [HttpGet("{numero}")]
         public ActionResult<Facture> Get(string numero)
         {
-            var facture = _data.lesFactures.Where(f => f.Numero == numero).FirstOrDefault();
-
-            if (facture != null)
-            {
-                return facture; 
-            }
-            else
-            {
-                return NotFound();
-            }
+            return _data.GetByNumero(numero);
         }
 
         [HttpPost]
@@ -47,7 +38,7 @@ namespace Facturation_V2.Server.Controllers
         {
             if (ModelState.IsValid)
             {
-                _data.lesFactures.Add(factureDTO.ToFacture());
+                _data.Add(factureDTO.ToFacture());
             }
         }
     }
